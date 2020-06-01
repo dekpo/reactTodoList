@@ -12,7 +12,7 @@ class App extends React.Component{
             <BrowserRouter>
               <Switch>
                 <Route path="/add-task" component={AddTask} />
-                <Route path="/:filter?" render={(props) => <TodoList {...props} task={initialData} />} />
+                <Route path="/:filter?" render={(props) => <TodoList {...props} tasks={initialData} />} />
               </Switch>
               <NavBar />
             </BrowserRouter>
