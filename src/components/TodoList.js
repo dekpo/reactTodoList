@@ -1,7 +1,7 @@
 import React from 'react';
 import Todo from './Todo';
 
-const TodoList = ({tasks, match}) => {
+const TodoList = ({tasks, match, onToggleCompleted}) => {
     let filteredTasks
     switch (match.params.filter){
         case 'completed':
@@ -25,7 +25,7 @@ const TodoList = ({tasks, match}) => {
             <h1 className="m-3">Liste de tâches</h1>
                 <ul className="list-group m-3">
                     {
-                        filteredTasks.map((task) => <Todo task={task} key={task.id} />)
+                        filteredTasks.map((task) => <Todo task={task} key={task.id} onToggleCompleted={onToggleCompleted} />)
                     }
                 </ul>
             </>
