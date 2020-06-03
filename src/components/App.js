@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import AddTask from './AddTask';
 import initialData from '../initialData';
+import uniqid from 'uniqid';
 
 
 class App extends React.Component{
@@ -23,12 +24,24 @@ class App extends React.Component{
     ))
   }
 
+  onAddTask = (newTaskName) => {
+    let newTask = {
+      id: uniqid(),
+      name: newTaskName,
+      completed: false
+    }
+
+    this.setState(prevState => ({
+      tasks : [...prevState.tasks, newTask]
+    }))
+  }
+
     render(){
       return(
           <section id="todo">
             <BrowserRouter>
               <Switch>
-                <Route path="/add-task" component={AddTask} />
+                <Route path="/add-task" render={(props) => <AddTask {...props} onAddTask={this.onAddTask} />} />
                 <Route path="/:filter?" render={(props) => <TodoList {...props} tasks={this.state.tasks} onToggleCompleted={this.onToggleCompleted} />} />
               </Switch>
               <NavBar />

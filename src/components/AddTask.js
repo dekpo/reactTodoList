@@ -1,6 +1,12 @@
 import React from 'react';
 
 class AddTask extends React.Component{
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.onAddTask(this.newTask.value);
+    }
+
     render(){
       return (
             <section>
@@ -11,7 +17,7 @@ class AddTask extends React.Component{
                             <label form="taskName">Nom de la tâche</label>
                             <input type="text" className="form-control" name="taskName" id="taskName" required ref={input => this.newTask = input} />
                         </div>
-                        <button type="submit" className="btn btn-primary">Créer</button>
+                        <button type="submit" className="btn btn-success">Créer</button>
                     </form>
                 </div>
             </section>
